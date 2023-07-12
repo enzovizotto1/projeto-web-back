@@ -1,7 +1,20 @@
 import {PrismaClient} from "@prisma/client"
 import gerarToken from "../Utils/jwt.js"
+import nodemailer from "nodemailer"
 
 const prisma = new PrismaClient()
+
+const transporter = nodemailer.createTransport({
+    host: "smtp-mail.outlook.com",
+    port: 587,
+    secure: true,
+    auth: {
+        
+      // TODO: replace `user` and `pass` values from <https://forwardemail.net>
+      user: 'guhgimenez2209@outlook.com',
+      pass: 'guh123qwe'
+    }
+  });
 
 export const criarUsuario = async (req, res) => {
     const usuario = await prisma.usuario.create({
@@ -124,5 +137,38 @@ export const adicionarAmigo = async (req, res) => {
     res.json({
         data: usuario,
         msg: "Amigo adicionado com sucesso"
+    })
+}
+
+export const recuperarSenha = async (req, res) => {
+    const novaSenha =  Math.random().toString(36).slice(-10);
+    const usuario = await prisma.usuario.update({
+        where:{
+            email: req.body.email
+        },
+        data:{
+            senha: novaSenha
+        }
+    })
+
+    const configEmail = {
+        from: "guhgimenez2209@outlook.com",
+        to: req.body.email,
+        subject: "nova senha gamebald",
+        html: "<p>Sua nova senha é: " + novaSenha +"</p>"
+    }
+
+    new Promise((resolve, reject) => {
+        transporter.sendMail(configEmail).then(result => {
+            transporter.close()
+        }).catch(error =>{
+            console.log(error);
+            transporter.close()
+        })
+    }
+    )
+
+    res.json({
+        msg: "Senha atualizada com sucesso"
     })
 }
