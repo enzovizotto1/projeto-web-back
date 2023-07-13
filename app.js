@@ -11,7 +11,7 @@ app.use(express.json())
 app.use('/public', express.static('public'))
 app.use('/usuarios', usuariosRouter)
 app.use("/jogo", steamRouter)
-app.use("/avaliacao", rattingRouter)
+app.use("/ratting", rattingRouter)
 
 
 app.listen(port, () => {
