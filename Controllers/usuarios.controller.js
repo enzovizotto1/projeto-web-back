@@ -122,7 +122,6 @@ export const getUsuarioPorId = async (req, res) => {
                 id: parseInt(req.params.usuarioId)
             },
             include: {
-                jogos: true,
                 avalicao: true,
                 amigo: true,
                 amigoDe: true
