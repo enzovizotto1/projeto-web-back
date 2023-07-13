@@ -1,6 +1,6 @@
 
 import express from 'express';
-import * as rattingController  from './controllers/rattingController.js';
+import * as rattingController  from '../Controllers/ratting.controller.js'
 
 const router = express.Router();
 
