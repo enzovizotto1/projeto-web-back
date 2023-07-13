@@ -5,11 +5,11 @@ import * as ratingController  from '../Controllers/rating.controller.js';
 const router = express.Router();
 
 // Rota para adicionar avaliação
-router.post('/rating', ratingController.adicionarAvaliacao);
+router.post('', ratingController.adicionarAvaliacao);
 router.get('/', ratingController.getTodasAvaliacoes);
 router.get('/:appid', ratingController.getAvaliacoesUsuario);
-router.put('/rating', ratingController.atualizarAvaliacao);
-router.delete('/rating', ratingController.removerAvaliacao);
+router.put('', ratingController.atualizarAvaliacao);
+router.delete('/', ratingController.removerAvaliacao);
 
 export default router;
 
