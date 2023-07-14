@@ -107,7 +107,7 @@ export const getAvaliacoesUsuario = async (req, res) => {
         const avaliacoes = await prisma.avaliacao.findMany({
             where:{
                 AND:{
-                    status: req.body.status,
+                    status: req.params.status,
                     usuarioId: parseInt(req.params.usuarioId)
                 }
             }
