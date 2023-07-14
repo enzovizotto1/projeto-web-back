@@ -6,10 +6,9 @@ const router = express.Router();
 
 // Rota para adicionar avaliação
 router.post('/', ratingController.adicionarAvaliacao);
-router.get('/', ratingController.getTodasAvaliacoes);
-router.get('/:appid', ratingController.getAvaliacoesUsuario);
-router.put('/', ratingController.atualizarAvaliacao);
-router.delete('/', ratingController.removerAvaliacao);
+router.get('/nota/:usuarioId', ratingController.getAvaliacoesUsuario);
+router.get('/estatistica/:usuarioId', ratingController.getEstatisticasUsuario);
+router.delete('/:avaliacaoId', ratingController.removerAvaliacao);
 
 export default router;
 

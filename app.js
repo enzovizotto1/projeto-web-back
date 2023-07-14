@@ -14,7 +14,8 @@ app.use(cors());
 app.use('/public', express.static('public'))
 app.use('/usuarios', usuariosRouter)
 app.use("/jogos", jogosRouter)
-app.use("/rating", ratingRouter)
+//app.use("/rating", ratingRouter)
+app.use("/avaliacao", ratingRouter)
 
 
 app.listen(port, () => {
