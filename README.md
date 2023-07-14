@@ -29,7 +29,7 @@ DATABASE_URL="mysql://fulano:senhafulano@localhost:3306/gamebald?schema=public"
 
 JWT_SECRET='75b36bd531288f34ad026227de208699a213ce30cdf8c9f892d3720f0db8e9ebaa50f04f319b88242b5d5cba8157da5d8d8653b465d94a82f79b023c92aea4bc'
 ```
-fulano: seu usuário do mysql  
+fulano: seu usuário do mysql (geralmente root)   
 senhafulano: senha do usuário fulano para acessr o mysql  
 3306: porta que o mysql roda na sua máquina 
 
@@ -45,3 +45,26 @@ npm run dev
 ```
 
 ## API Endpoints
+-`GET /public/:nomeDaFoto`: Obtém uma foto da pasta public  
+
+-`POST /usuarios/`: Cria/Cadastra um usuário  
+-`POST /usuarios/login`: Realiza o login do usuário  
+-`GET /usuarios/`: Obtém todos usuários  
+-`GET /usuarios/:usuarioId`: Obtém as informações de um usuário específico  
+-`PUT /usuarios/config/:usuarioId`: Atualiza informações do usuário  
+-`PUT /usuarios/adicionar/:usuarioId`: Adiciona um amigo  
+-`PUT /usuarios/recuperacao`: Gera uma nova senha  
+-`DELETE /usuarios/:usuarioId`: Deleta um usuário  
+
+-`GET /jogos/`: Obtém todos jogos disponíveis  
+-`GET /jogos/id/:jogoId`: Obtém as informações do jogo específico  
+-`GET /jogos/nome`: Busca o jogo por nome  
+
+-`POST /avaliacao/`: Cria uma avaliacao  
+-`GET /avaliacao/nota/:usuarioId`: Obtém todas avaliações de usuarioId que possuam o status passado no body  
+-`GET /avaliacao/estatistica/:usuarioId`: Obtém a quantidade de avaliações por status de um usuario especifico  
+-`DELETE /avaliacao/:avaliacaoId`: Deleta uma avaliação  
+
+
+
+Lembre-se de ajustar as informações necessárias, como o usuário do banco de dados, a senha e a porta, de acordo com o ambiente de desenvolvimento.
