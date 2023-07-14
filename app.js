@@ -1,7 +1,7 @@
 import express from "express";
 import jogosRouter from "./Routes/jogos.routes.js"
 import usuariosRouter from './Routes/usuarios.routes.js'
-import ratingRouter from './Routes/rating.routes.js';
+import avaliacaoRouter from './Routes/avaliacao.routes.js';
 import cors from "cors"
 
 const app = express()
@@ -14,8 +14,7 @@ app.use(cors());
 app.use('/public', express.static('public'))
 app.use('/usuarios', usuariosRouter)
 app.use("/jogos", jogosRouter)
-//app.use("/rating", ratingRouter)
-app.use("/avaliacao", ratingRouter)
+app.use("/avaliacao", avaliacaoRouter)
 
 
 app.listen(port, () => {

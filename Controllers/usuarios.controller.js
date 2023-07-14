@@ -5,22 +5,38 @@ const prisma = new PrismaClient()
 
 export const criarUsuario = async (req, res) => {
     try{
-        const usuario = await prisma.usuario.create({
-            data:{
-                nome: req.body.nome,
-                email: req.body.email,
-                senha: req.body.senha,
-                username: req.body.username,
+        const user = await prisma.usuario.findFirst({
+            where:{
+                OR:[
+                    {email: req.body.email},
+                    {username: req.body.username}
+                ]  
             }
         })
-
-        const token = gerarToken(usuario)
-
-        res.json({
-            data: usuario,
-            token: token,
-            msg: "User criado com sucesso"
-        })
+        if(user == null){
+            const usuario = await prisma.usuario.create({
+                data:{
+                    nome: req.body.nome,
+                    email: req.body.email,
+                    senha: req.body.senha,
+                    username: req.body.username,
+                }
+            })
+    
+            const token = gerarToken(usuario)
+    
+            res.json({
+                data: usuario,
+                token: token,
+                msg: "User criado com sucesso"
+            })
+        }
+        else{
+            res.json({
+                msg: "Email ou username já cadastrado(s)"
+            })
+        }
+        
     }catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro ao cadastrar usuário' });
@@ -91,9 +107,21 @@ export const deletarUsuario = async (req, res) => {
             where: {      
                 id: parseInt(req.params.usuarioId)}
         })
-        res.json({
-            msg: "Usuários deletado com sucesso"
-        })
+
+        if(usuarioDeletado == {
+            "count": 0
+        }){
+            res.json({
+                data: usuarioDeletado,
+                msg: "Usuários não encontrado"
+            })
+        }
+        else{
+            res.json({
+                data: usuarioDeletado,
+                msg: "Usuários deletado com sucesso"
+            })
+        }
     }catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro ao deletar usuário' });
@@ -125,11 +153,18 @@ export const getUsuarioPorId = async (req, res) => {
                 amigoDe: true
             }
         })
+        if(usuario == null){
+            res.json({
+                msg: "Usuário não encontrado"
+            })
+        }
+        else{
+            res.json({
+                data: usuario,
+                msg: "Usuário encontrado com suceso"
+            })
+        }
 
-        res.json({
-            data: usuario,
-            msg: "Usuário retornado com sucesso"
-        })
     }catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro ao buscar usuário' });
@@ -144,7 +179,9 @@ export const adicionarAmigo = async (req, res) => {
             },
             data:{
                 amigo: {
-                    connect: req.body.amigo
+                    connect: {
+                        id: req.body.amigo
+                    }
                 }
             }
         })
@@ -172,6 +209,7 @@ export const recuperarSenha = async (req, res) => {
     })
 
     res.json({
+        data: novaSenha,
         msg: "Senha atualizada com sucesso"
     })
     }catch (error) {

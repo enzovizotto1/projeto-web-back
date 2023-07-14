@@ -115,7 +115,7 @@ export const getAvaliacoesUsuario = async (req, res) => {
 
 		res.json({
             data: avaliacoes,
-            msg: "Usuários retornados com sucesso"
+            msg: "Avaliações retornadas com sucesso retornados com sucesso"
         })
 
 	

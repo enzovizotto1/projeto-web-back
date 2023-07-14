@@ -56,10 +56,19 @@ export const getJogoPorId = async (req, res) => {
             }
         })
 
-        res.json({
-            data: jogo,
-            msg: "Jogo retornado com sucesso"
-        })
+        if(jogo == null){
+            res.json({
+                msg: "Jogo não encontrado"
+            })
+        }
+        else{
+            res.json({
+                data: jogo,
+                msg: "Jogo retornado com sucesso"
+            })
+        }
+
+        
     }catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro ao buscar jogo' });
@@ -75,6 +84,7 @@ export const getJogoPorNome = async (req, res) => {
                 }
             }
         })
+
 
         res.json({
             data: jogo,
