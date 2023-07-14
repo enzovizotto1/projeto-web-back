@@ -8,7 +8,7 @@ async function atualizaNotas (idJogo){
 	try {
 		const result = await prisma.avaliacao.aggregate({
 			where:{
-				jogoId: idJogo
+				jogoId: parseInt(idJogo)
 			},
 			_avg: {
 				nota: true
@@ -20,7 +20,7 @@ async function atualizaNotas (idJogo){
 
 		const jogo = await prisma.jogo.update({
 			where:{
-				id: idJogo
+				id: parseInt(idJogo)
 			},
 			data:{
 				nota: media
@@ -38,8 +38,8 @@ async function atualizaNotas (idJogo){
 		const avlexiste = await prisma.avaliacao.findFirst({
 			where:{
 				AND:{
-                    usuarioId: req.body.usuario,
-                    jogoId: req.body.jogo
+                    usuarioId:  parseInt(req.body.usuario),
+                    jogoId:  parseInt(req.body.jogo)
                 }
 			}
 		})
@@ -51,12 +51,12 @@ async function atualizaNotas (idJogo){
 					status: req.body.status,
 					usuario: {
 						connect: {
-							id: req.body.usuario
+							id: parseInt(req.body.usuario)
 						}
 					},
 					jogo: {
 						connect: {
-							id: req.body.jogo
+							id: parseInt(req.body.jogo)
 						}
 					}
 				}
@@ -77,12 +77,12 @@ async function atualizaNotas (idJogo){
 					status: req.body.status,
 					usuario: {
 						connect: {
-							id: req.body.usuario
+							id: parseInt(req.body.usuario)
 						}
 					},
 					jogo: {
 						connect: {
-							id: req.body.jogo
+							id: parseInt(req.body.jogo)
 						}
 					}
 				}
@@ -113,14 +113,24 @@ export const getAvaliacoesUsuario = async (req, res) => {
             }
         })
 
+		const jogos = []
+
+		for(const avaliacao of avaliacoes){
+			const game = await prisma.jogo.findUnique({
+				where:{
+					id: parseInt(avaliacao.jogoId)
+				}
+			})
+			jogos.push(game)
+		}
+
 		res.json({
-            data: avaliacoes,
+            data: jogos,
             msg: "Avaliações retornadas com sucesso retornados com sucesso"
         })
 
 	
-}
-catch (error) {
+}catch (error) {
 	console.error(error);
 	res.status(500).json({ error: 'Erro ao buscar avaliações' });
   }
@@ -190,6 +200,3 @@ export const removerAvaliacao = async (req, res) => {
         msg: "Avaliação removida com sucesso"
     })
 }
-
-
-
