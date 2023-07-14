@@ -45,25 +45,25 @@ npm run dev
 ```
 
 ## API Endpoints
--`GET /public/:nomeDaFoto`: Obtém uma foto da pasta public
+-`GET /public/:nomeDaFoto`: Obtém uma foto da pasta public  
 
--`POST /usuarios/`: Cria/Cadastra um usuário
--`POST /usuarios/login`: Realiza o login do usuário
--`GET /usuarios/`: Obtém todos usuários
--`GET /usuarios/:usuarioId`: Obtém as informações de um usuário específico 
--`PUT /usuarios/config/:usuarioId`: Atualiza informações do usuário
--`PUT /usuarios/adicionar/:usuarioId`: Adiciona um amigo
--`PUT /usuarios/recuperacao`: Gera uma nova senha
--`DELETE /usuarios/:usuarioId`: Deleta um usuário
+-`POST /usuarios/`: Cria/Cadastra um usuário  
+-`POST /usuarios/login`: Realiza o login do usuário  
+-`GET /usuarios/`: Obtém todos usuários  
+-`GET /usuarios/:usuarioId`: Obtém as informações de um usuário específico  
+-`PUT /usuarios/config/:usuarioId`: Atualiza informações do usuário  
+-`PUT /usuarios/adicionar/:usuarioId`: Adiciona um amigo  
+-`PUT /usuarios/recuperacao`: Gera uma nova senha  
+-`DELETE /usuarios/:usuarioId`: Deleta um usuário  
 
--`GET /jogos/`: Obtém todos jogos disponíveis
--`GET /jogos/id/:jogoId`: Obtém as informações do jogo específico
--`GET /jogos/nome`: Busca o jogo por nome
+-`GET /jogos/`: Obtém todos jogos disponíveis  
+-`GET /jogos/id/:jogoId`: Obtém as informações do jogo específico  
+-`GET /jogos/nome`: Busca o jogo por nome  
 
--`POST /avaliacao/`: Cria uma avaliacao
--`GET /avaliacao/nota/:usuarioId`: Obtém todas avaliações de usuarioId que possuam o status passado no body
--`GET /avaliacao/estatistica/:usuarioId`: Obtém a quantidade de avaliações por status de um usuario especifico
--`DELETE /avaliacao/:avaliacaoId`: Deleta uma avaliação
+-`POST /avaliacao/`: Cria uma avaliacao  
+-`GET /avaliacao/nota/:usuarioId`: Obtém todas avaliações de usuarioId que possuam o status passado no body  
+-`GET /avaliacao/estatistica/:usuarioId`: Obtém a quantidade de avaliações por status de um usuario especifico  
+-`DELETE /avaliacao/:avaliacaoId`: Deleta uma avaliação  
 
 
 
