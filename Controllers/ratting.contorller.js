@@ -37,12 +37,8 @@ export const getAvaliacoesUsuario = async (req, res) => {
       const { userId } = req.params;
   
       const usuario = await prisma.usuario.findUnique({
-        where: { 
-          id: userId 
-        },
-        select: { 
-          avaliacao: true 
-        }
+        where: { id: userId },
+        select: { avaliacao: true }
       });
   
       if (!usuario) {
@@ -60,10 +56,7 @@ export const getAvaliacoesUsuario = async (req, res) => {
 export const getTodasAvaliacoes = async (req, res) => {
     try {
       const usuarios = await prisma.usuario.findMany({
-        select: { 
-          id: true,
-          avaliacao: true 
-        }
+        select: { id: true, avaliacao: true }
       });
   
       res.json(usuarios);
@@ -79,9 +72,7 @@ export const atualizarAvaliacao = async (req, res) => {
       const { nota } = req.body;
   
       const usuario = await prisma.usuario.update({
-        where: { 
-          id: userId 
-        },
+        where: { id: userId },
         data: {
           avaliacao: nota
         }
