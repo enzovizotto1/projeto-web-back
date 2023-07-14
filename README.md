@@ -29,7 +29,7 @@ DATABASE_URL="mysql://fulano:senhafulano@localhost:3306/gamebald?schema=public"
 
 JWT_SECRET='75b36bd531288f34ad026227de208699a213ce30cdf8c9f892d3720f0db8e9ebaa50f04f319b88242b5d5cba8157da5d8d8653b465d94a82f79b023c92aea4bc'
 ```
-fulano: seu usuário do mysql  
+fulano: seu usuário do mysql (geralmente root)   
 senhafulano: senha do usuário fulano para acessr o mysql  
 3306: porta que o mysql roda na sua máquina 
 
