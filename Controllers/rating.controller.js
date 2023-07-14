@@ -33,35 +33,71 @@ async function atualizaNotas (idJogo){
 		}
   };
 
-export const adicionarAvaliacao = async (req, res) => {
+  export const adicionarAvaliacao = async (req, res) => {
 	try{
-		const avaliacao = await prisma.avaliacao.create({
-			data: {
-				nota: req.body.nota,
-				status: req.body.status,
-				usuario: {
-					connect: {
-						id: req.body.usuario
-					}
-				},
-				jogo: {
-					connect: {
-						id: req.body.jogo
-					}
-				}
+		const avlexiste = await prisma.avaliacao.findFirst({
+			where:{
+				AND:{
+                    usuarioId: req.body.usuario,
+                    jogoId: req.body.jogo
+                }
 			}
 		})
+		console.log(avlexiste)
+		if(avlexiste == null){
+			const avaliacao = await prisma.avaliacao.create({
+				data: {
+					nota: req.body.nota,
+					status: req.body.status,
+					usuario: {
+						connect: {
+							id: req.body.usuario
+						}
+					},
+					jogo: {
+						connect: {
+							id: req.body.jogo
+						}
+					}
+				}
+			})
+			res.json({
+				data: avaliacao,
+				msg: "Avaliação criada com sucesso"
+			})
+		}
+
+		else{
+			const avaliacao = await prisma.avaliacao.update({
+				where:{
+					id: avlexiste.id
+				},
+				data: {
+					nota: req.body.nota,
+					status: req.body.status,
+					usuario: {
+						connect: {
+							id: req.body.usuario
+						}
+					},
+					jogo: {
+						connect: {
+							id: req.body.jogo
+						}
+					}
+				}
+			})
+			res.json({
+				data: avaliacao,
+				msg: "Avaliação alterada com sucesso"
+			})
+		}
 
 		atualizaNotas(req.body.jogo)
 
-		res.json({
-			data: avaliacao,
-			msg: "Avaliação criada com sucesso"
-		})
-
 	}catch(error){
 		console.error(error);
-		res.status(500).json({ error: "Erro"});
+		res.status(500).json({ error: "Erro na criação ou alteração de avaliação"});
 	}
 }
 
