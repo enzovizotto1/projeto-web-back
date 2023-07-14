@@ -1,17 +1,20 @@
 import express from "express";
-import steamRouter from "./Routes/steam.routes.js"
+import jogosRouter from "./Routes/jogos.routes.js"
 import usuariosRouter from './Routes/usuarios.routes.js'
-import rattingRouter from './Routes/ratting.routes.js';
+import ratingRouter from './Routes/rating.routes.js';
+import cors from "cors"
 
 const app = express()
-const port = 3000
+const port = 3001
 
 app.use(express.json())
 
+app.use(cors());
+
 app.use('/public', express.static('public'))
 app.use('/usuarios', usuariosRouter)
-app.use("/jogo", steamRouter)
-app.use("/ratting", rattingRouter)
+app.use("/jogos", jogosRouter)
+app.use("/rating", ratingRouter)
 
 
 app.listen(port, () => {

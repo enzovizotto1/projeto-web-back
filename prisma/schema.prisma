@@ -21,15 +21,6 @@ model Usuario {
   avalicao       Avaliacao[]
   amigo          Usuario[]   @relation("amigos")
   amigoDe        Usuario[]   @relation("amigos")
-  jogos          Jogo[]
-}
-
-model Jogo {
-  id         Int         @id @default(autoincrement())
-  nome       String      @db.VarChar(100)
-  nota_geral Decimal     @db.Decimal(10, 2)
-  avalicao   Avaliacao[]
-  usuario    Usuario[]
 }
 
 model Avaliacao {
@@ -40,4 +31,13 @@ model Avaliacao {
   usuarioId Int
   jogo      Jogo    @relation(fields: [jogoId], references: [id])
   jogoId    Int
+}
+
+model Jogo {
+  id       Int         @id @default(autoincrement())
+  nome     String      @db.VarChar(45)
+  foto     String      @db.VarChar(255)
+  sinopse  String      @db.Text
+  nota     Decimal?    @db.Decimal(10, 2)
+  avalicao Avaliacao[]
 }

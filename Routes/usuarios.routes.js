@@ -21,11 +21,11 @@ const upload = multer({ storage }).single('foto_de_perfil');
 
 router.post('/', usuariosController.criarUsuario)
 router.post('/login', usuariosController.login)
-router.put('/config/:usuarioId', upload, usuariosController.atualizarUsuario)
+router.put('/config/:usuarioId', autorizarUsuario, upload, usuariosController.atualizarUsuario)
 router.delete('/:usuarioId', usuariosController.deletarUsuario)
 router.get('/', usuariosController.getUsuarios)
 router.get('/:usuarioId', usuariosController.getUsuarioPorId)
-router.put('/adicionar/:usuarioId', usuariosController.adicionarAmigo)
+router.put('/adicionar/:usuarioId', autorizarUsuario, usuariosController.adicionarAmigo)
 router.put('/recuperacao', usuariosController.recuperarSenha)
 
 export default router;
