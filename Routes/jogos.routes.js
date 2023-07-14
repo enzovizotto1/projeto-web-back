@@ -8,7 +8,7 @@ jogosController.popularJogos();
 // Rota para adicionar avaliação
 router.get('/', jogosController.getTodosJogos);
 router.get('/id/:jogoId', jogosController.getJogoPorId)
-router.get('/nome', jogosController.getJogoPorNome)
+router.get('/nome/:nome', jogosController.getJogoPorNome)
 
 export default router;
 

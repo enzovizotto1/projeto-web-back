@@ -87,7 +87,6 @@ export const atualizarUsuario = async (req, res) => {
             data:{
                 username: req.body.username,
                 bio: req.body.bio,
-                foto_de_perfil: req.file.filename
             }
         })
 

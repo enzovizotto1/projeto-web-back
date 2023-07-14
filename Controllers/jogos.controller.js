@@ -95,7 +95,7 @@ export const getJogoPorNome = async (req, res) => {
         const jogo = await prisma.jogo.findMany({
             where: {
                 nome: {
-                    contains: req.body.nome
+                    contains: req.params.nome
                 }
             }
         })
