@@ -1,4 +1,4 @@
-# Backend Gamebald 
+# Backend Gamebald ![Badge](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white) 
 
 Desenvolvido por:  
 [Enzo Oliveira Vizotto](https://github.com/enzovizotto1/) - 20210102097  
@@ -10,7 +10,7 @@ Este repositório contém o backend do projeto Gamebald, uma aplicação web par
 
 ## Pré-requisitos
 
-- ![Badge](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white) Node.js (versão 12 ou superior) 
+- Node.js (versão 12 ou superior) 
 - MySQL (instalado e em execução)
 
 ## Instalação
