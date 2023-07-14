@@ -10,7 +10,7 @@ Este repositório contém o backend do projeto Gamebald, uma aplicação web par
 
 ## Pré-requisitos
 
-- Node.js (versão 12 ou superior)
+- Node.js (versão 12 ou superior) https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
 - MySQL (instalado e em execução)
 
 ## Instalação
