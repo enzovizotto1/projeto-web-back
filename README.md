@@ -68,6 +68,3 @@ npm run dev
 
 
 Lembre-se de ajustar as informações necessárias, como o usuário do banco de dados, a senha e a porta, de acordo com o ambiente de desenvolvimento.
-
-Espero que isso ajude! Se você tiver mais dúvidas, estou à disposição.
-
