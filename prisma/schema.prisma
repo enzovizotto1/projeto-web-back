@@ -27,9 +27,9 @@ model Avaliacao {
   id        Int     @id @default(autoincrement())
   nota      Decimal @db.Decimal(10, 2)
   status    String  @db.VarChar(45)
-  usuario   Usuario @relation(fields: [usuarioId], references: [id])
+  usuario   Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
   usuarioId Int
-  jogo      Jogo    @relation(fields: [jogoId], references: [id])
+  jogo      Jogo    @relation(fields: [jogoId], references: [id], onDelete: Cascade)
   jogoId    Int
 }
 
